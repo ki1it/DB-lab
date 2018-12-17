@@ -9,6 +9,7 @@ const Client = sequelize.define('Client', {
   },
   Patronymic: {
     type: Sequelize.STRING(300),
+    allowNull: true
   },
   Birthday:{
     type: Sequelize.DATE,
