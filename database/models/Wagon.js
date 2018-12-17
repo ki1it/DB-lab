@@ -1,6 +1,6 @@
 const sequelize = require('../lib/pgbaseConnector');
 const Sequelize = require('sequelize');
-const Car = sequelize.define('UserInGroup', {
+const Wagon = sequelize.define('Wagon', {
   Brand: {
     type: Sequelize.STRING(300),
   },
@@ -21,4 +21,4 @@ const Car = sequelize.define('UserInGroup', {
   },
 });
 
-module.exports = Car;
+module.exports = Wagon;

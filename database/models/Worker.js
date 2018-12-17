@@ -9,13 +9,13 @@ const Worker = sequelize.define('Worker', {
   },
   Patronymic: {
     type: Sequelize.STRING(300),
+    allowNull: true
   },
   Birthday:{
     type: Sequelize.DATE,
   },
   Position: {
-    type:   Sequelize.ENUM,
-    values: ['Administrator', 'Inspector', 'Repairer', 'Storekeeper', 'Manager', 'Director']
+    type:   Sequelize.INTEGER,
   }
 });
 

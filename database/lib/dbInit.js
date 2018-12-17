@@ -1,6 +1,6 @@
 
 const Group = require('../models/Worker')
-const UserInGroup = require('../models/Car')
+const UserInGroup = require('../models/Wagon')
 const User = require('../models/Client')
 
 Group.hasMany(UserInGroup, { foreignKey: 'id_gr', sourceKey: 'id' })
