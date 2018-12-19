@@ -7,6 +7,12 @@ const Task = sequelize.define('Task', {
   Date:{
     type: Sequelize.DATE,
   },
+  Status: {
+    type: Sequelize.INTEGER,
+  },
+  ServiceListFK: {
+    type: Sequelize.INTEGER,
+  },
 });
 
 module.exports = Task;

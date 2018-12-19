@@ -11,6 +11,15 @@ const ServiceList = sequelize.define('ServiceList', {
     type: Sequelize.STRING(3000),
     allowNull: true
   },
+  Status: {
+    type: Sequelize.INTEGER,
+  },
+  ClientFK: {
+    type: Sequelize.INTEGER,
+  },
+  WagonFK: {
+    type: Sequelize.INTEGER,
+  },
 });
 
 module.exports = ServiceList;

@@ -1,9 +1,9 @@
 const sequelize = require('../lib/pgbaseConnector');
 const Sequelize = require('sequelize');
-const ServiceListBreakdown = sequelize.define('ServiceListBreakdown', {
+const StatusOfServiceList = sequelize.define('StatusOfServiceList', {
   Name: {
     type: Sequelize.STRING(500),
   }
 });
 
-module.exports = ServiceListBreakdown;
+module.exports = StatusOfServiceList;

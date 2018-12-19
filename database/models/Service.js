@@ -7,6 +7,12 @@ const Service = sequelize.define('Service', {
   FrequencyMarker:{
     type: Sequelize.BOOLEAN,
   },
+  Type:{
+    type: Sequelize.INTEGER,
+  },
+  ServiceListServiceFK:{
+    type: Sequelize.INTEGER,
+  }
 });
 
 module.exports = Service;

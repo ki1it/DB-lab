@@ -1,12 +1,18 @@
 const sequelize = require('../lib/pgbaseConnector');
 const Sequelize = require('sequelize');
 const Breakdown = sequelize.define('Breakdown', {
-  Type: {
+  Name: {
     type: Sequelize.STRING(300),
   },
-  Often: {
+  FrequencyMarker:{
     type: Sequelize.BOOLEAN,
   },
+  Type:{
+    type: Sequelize.INTEGER,
+  },
+  ServiceListBr:{
+    type: Sequelize.INTEGER,
+  }
 });
 
 module.exports = Breakdown;

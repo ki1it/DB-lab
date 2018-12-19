@@ -14,7 +14,7 @@ const Worker = sequelize.define('Worker', {
   Birthday:{
     type: Sequelize.DATE,
   },
-  Position: {
+  PositionFK: {
     type:   Sequelize.INTEGER,
   }
 });
