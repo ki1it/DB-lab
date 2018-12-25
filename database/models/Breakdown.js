@@ -9,9 +9,6 @@ const Breakdown = sequelize.define('Breakdown', {
   },
   Type:{
     type: Sequelize.INTEGER,
-  },
-  ServiceListBr:{
-    type: Sequelize.INTEGER,
   }
 });
 

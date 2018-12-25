@@ -6,6 +6,9 @@ const ServiceListBreakdown = sequelize.define('ServiceListBreakdown', {
   },
   ServiceListFK:{
     type: Sequelize.INTEGER,
+  },
+  ServiceListBr:{
+    type: Sequelize.INTEGER,
   }
 });
 

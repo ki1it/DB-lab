@@ -21,8 +21,8 @@ const WorkOrderName = require('../models/WorkOrderName')
 BreakdownType.hasMany(Breakdown, { foreignKey: 'Type', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
 Breakdown.belongsTo(BreakdownType, { foreignKey: 'Type', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
 
-ServiceListBreakdown.hasMany(Breakdown, { foreignKey: 'ServiceListBr', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
-Breakdown.belongsTo(ServiceListBreakdown, { foreignKey: 'ServiceListBr', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
+Breakdown.hasMany(ServiceListBreakdown, { foreignKey: 'ServiceListBr', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
+ServiceListBreakdown.belongsTo(Breakdown, { foreignKey: 'ServiceListBr', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
 
 ServiceList.hasMany(ServiceListBreakdown, { foreignKey: 'ServiceListFK', sourceKey: 'id', onDelete: 'cascade', onUpdate: 'restrict'})
 ServiceListBreakdown.belongsTo(ServiceList, { foreignKey: 'ServiceListFK', targetKey: 'id', onDelete: 'cascade', onUpdate: 'restrict' })
@@ -82,10 +82,11 @@ async function init () {
   await Client.sync({force:true})
   await StatusOfServiceList.sync({force:true})
   await ServiceList.sync({force:true})
-  await ServiceListBreakdown.sync({force:true})
+
 
   await BreakdownType.sync({force:true})
   await Breakdown.sync({force:true})
+    await ServiceListBreakdown.sync({force:true})
 
   await ServiceList_Service.sync({force:true})
   await ServiceType.sync({force:true})
@@ -109,5 +110,7 @@ async function init () {
 (async function f () {
   await init()
 })()
+
+
 
 // module.exports.init = init()
