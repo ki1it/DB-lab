@@ -27,6 +27,7 @@ html(lang='en')
                     td #[a(href="client?id=" + client) #{client}]
                     td #[a(href="uslugi?id=" + id) Открыть]
                     td #[a(href="polomki?id=" + id) Открыть]
+                    td #[a(href="zapchasti?id=" + id) Открыть]
 
                     //td #a#navbarDropdownMenuLink.nav-link(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')] i.material-icons menu  p.d-lg-none.d-md-block | Some Actions .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdownMenuLink') a.dropdown-item(href='#')] Забанить a.dropdown-item(href='#') Продвинуть a.dropdown-item(href='#') Вывод средств
 
@@ -46,13 +47,13 @@ html(lang='en')
                                 i.material-icons dashboard
                                 p Заказ-наряды
                         li.nav-item
-                            a.nav-link(href='/customers')
+                            a.nav-link(href='/clients')
                                 i.material-icons person
                                 p Клиенты
                         li.nav-item
-                            a.nav-link(href='/agency')
+                            a.nav-link(href='/sklad')
                                 i.material-icons content_paste
-                                p Агентства
+                                p Склад
                         li.nav-item
                             a.nav-link(href='/operations')
                                 i.material-icons library_books
@@ -133,6 +134,8 @@ html(lang='en')
                                                             | Услуги
                                                         th
                                                             | Поломки
+                                                        th
+                                                            | Запчасти
                                                 tbody
                                                     -for (let i = 0; i < wagons.length; i++)
                                                         +rowsTable(wagons[i].dataValues.id,

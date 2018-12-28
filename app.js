@@ -9,11 +9,12 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var wagonRouter = require('./routes/wagon')
 var curwagonRouter = require('./routes/curwagon')
-var offersRouter = require('./routes/offers')
 var clientRouter = require('./routes/client')
 var usluguRouter = require('./routes/uslugi')
 var polomkiRouter = require('./routes/polomki')
-
+var clientsRouter = require('./routes/clients')
+var skladRouter = require('./routes/sklad')
+var zapchastiRouter = require('./routes/zapchasti')
 var app = express();
 
 
@@ -44,10 +45,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/wagon', wagonRouter)
 app.use('/curwagon', curwagonRouter)
-app.use('/offers', offersRouter)
 app.use('/client', clientRouter)
 app.use('/uslugi', usluguRouter)
 app.use('/polomki', polomkiRouter)
+app.use('/zapchasti', zapchastiRouter)
+app.use('/clients', clientsRouter)
+app.use('/sklad', skladRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
