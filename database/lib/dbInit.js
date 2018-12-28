@@ -32,8 +32,8 @@ ServiceListBreakdown.belongsTo(ServiceList, { foreignKey: 'ServiceListFK', targe
 ServiceType.hasMany(Service, { foreignKey: 'Type', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
 Service.belongsTo(ServiceType, { foreignKey: 'Type', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
 
-Service.hasMany(ServiceList_Service, { foreignKey: 'ServiceListServiceFK', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
-ServiceList_Service.belongsTo(Service, { foreignKey: 'ServiceListServiceFK', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
+Service.hasMany(ServiceList_Service, { foreignKey: 'ServiceFK', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
+ServiceList_Service.belongsTo(Service, { foreignKey: 'ServiceFK', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
 
 ServiceList.hasMany(ServiceList_Service, { foreignKey: 'ServiceListFK', sourceKey: 'id', onDelete: 'cascade', onUpdate: 'restrict'})
 ServiceList_Service.belongsTo(ServiceList, { foreignKey: 'ServiceListFK', targetKey: 'id', onDelete: 'cascade', onUpdate: 'restrict' })

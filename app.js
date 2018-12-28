@@ -3,13 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
 require('dotenv').config()
 require('./database/lib/dbInit')
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var wagonRouter = require('./routes/wagon')
+var curwagonRouter = require('./routes/curwagon')
+var offersRouter = require('./routes/offers')
+var clientRouter = require('./routes/client')
+var usluguRouter = require('./routes/uslugi')
+var polomkiRouter = require('./routes/polomki')
+
+var app = express();
+
 
 const Breakdown  =  require('./database/models/Breakdown')
 async function a (){
@@ -36,6 +42,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/wagon', wagonRouter)
+app.use('/curwagon', curwagonRouter)
+app.use('/offers', offersRouter)
+app.use('/client', clientRouter)
+app.use('/uslugi', usluguRouter)
+app.use('/polomki', polomkiRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

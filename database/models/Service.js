@@ -9,6 +9,9 @@ const Service = sequelize.define('Service', {
   },
   Type:{
     type: Sequelize.INTEGER,
+  },
+  Price:{
+    type: Sequelize.INTEGER,
   }
 });
 
