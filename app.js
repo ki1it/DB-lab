@@ -10,6 +10,20 @@ var usersRouter = require('./routes/users');
 var app = express();
 require('dotenv').config()
 require('./database/lib/dbInit')
+
+const Breakdown  =  require('./database/models/Breakdown')
+async function a (){
+  await new Promise(done => setTimeout(done, 1000))
+  let res = await Breakdown.findAll({
+    where:{
+      FrequencyMarker: true
+
+    },
+    limit:10
+  })
+  console.log(res)
+}
+a()
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

@@ -17,6 +17,7 @@ const TaskStatus = require('../models/TaskStatus')
 const Wagon = require('../models/Wagon')
 const Worker = require('../models/Worker')
 const WorkOrderName = require('../models/WorkOrderName')
+const User = require('../models/User')
 
 BreakdownType.hasMany(Breakdown, { foreignKey: 'Type', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
 Breakdown.belongsTo(BreakdownType, { foreignKey: 'Type', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
@@ -104,7 +105,7 @@ async function init () {
   await Worker.sync({force:true})
   await TaskWorker.sync({force:true})
 
-
+  await User.sync({force:true})
 }
 
 (async function f () {
