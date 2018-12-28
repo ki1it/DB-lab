@@ -107,27 +107,26 @@ html(lang='en')
                             .col-md-12
                                 .card
                                     .card-header.card-header-primary
-                                        h4.card-title Запчасти для вагона
+                                        h4.card-title Задачи для вагона
                                     .card-body
                                         .table-responsive
                                             table.table
                                                 thead.text-primary
                                                     tr
                                                         th
-                                                            | Количество
+                                                            | id
                                                         th
-                                                            | Название
+                                                            | Текст
                                                         th
-                                                            | Цена
+                                                            | Дата
                                                         th
-                                                            | Тип
+                                                            | Статус
                                                 tbody
                                                     -for (let i = 0; i < usluga.length; i++)
-                                                        +rowsTable(usluga[i].dataValues.Amount,
-                                                        usluga[i].NameOfGood.dataValues.Name,
-                                                        usluga[i].NameOfGood.dataValues.Price,
-                                                        usluga[i].dataValues.NameOfGood.dataValues.NameType.dataValues.Name,
-                                                        usluga[i].dataValues.NameOfGood.dataValues.NameStatus.dataValues.Name
+                                                        +rowsTable(usluga[i].dataValues.id,
+                                                        usluga[i].dataValues.Text,
+                                                        usluga[i].dataValues.Date,
+                                                        usluga[i].dataValues.TaskStatus.dataValues.Name
                                                         )
                 footer.footer
                     .container-fluid

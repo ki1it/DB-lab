@@ -15,6 +15,8 @@ var polomkiRouter = require('./routes/polomki')
 var clientsRouter = require('./routes/clients')
 var skladRouter = require('./routes/sklad')
 var zapchastiRouter = require('./routes/zapchasti')
+var zadachiRouter = require('./routes/zadachi')
+var workersRouter = require('./routes/workers')
 var app = express();
 
 
@@ -51,6 +53,55 @@ app.use('/polomki', polomkiRouter)
 app.use('/zapchasti', zapchastiRouter)
 app.use('/clients', clientsRouter)
 app.use('/sklad', skladRouter)
+app.use('/zadachi', zadachiRouter)
+app.use('/workers', workersRouter)
+
+
+const NameOfGood = require('./database/models/NameOfGood')
+const NameType = require('./database/models/NameType')
+const NameStatus = require('./database/models/NameStatus')
+
+app.use('/addsklad',async function (req, res) {
+  let type = await  NameType.findOne({
+    where:{Name: req.body.type}
+  })
+  let status = await  NameStatus.findOne({
+    where:{Name: req.body.status}
+  })
+  await NameOfGood.create({
+      Name: req.body.name,
+      Amount: parseInt(req.body.col),
+      Type: type.dataValues.id,
+      Status: status.dataValues.id,
+      Price: parseInt(req.body.price)
+    }
+  )
+  res.redirect(req.headers.referer)
+})
+
+app.use('/updsklad',async function (req, res) {
+  let num = await  NameOfGood.findOne({
+    where:{id: req.body.id}
+  })
+  await NameOfGood.update({
+      Amount: parseInt(req.body.col)+num.dataValues.Amount,
+
+    },{where:{id:req.body.id}}
+  )
+  res.redirect(req.headers.referer)
+})
+
+app.use('/minsklad',async function (req, res) {
+  let num = await  NameOfGood.findOne({
+    where:{id: req.body.id}
+  })
+  await NameOfGood.update({
+      Amount: parseInt(req.body.col)-num.dataValues.Amount,
+
+    },{where:{id:req.body.id}}
+  )
+  res.redirect(req.headers.referer)
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
