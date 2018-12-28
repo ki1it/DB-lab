@@ -9,9 +9,6 @@ const Service = sequelize.define('Service', {
   },
   Type:{
     type: Sequelize.INTEGER,
-  },
-  ServiceListServiceFK:{
-    type: Sequelize.INTEGER,
   }
 });
 

@@ -32,8 +32,8 @@ ServiceListBreakdown.belongsTo(ServiceList, { foreignKey: 'ServiceListFK', targe
 ServiceType.hasMany(Service, { foreignKey: 'Type', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
 Service.belongsTo(ServiceType, { foreignKey: 'Type', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
 
-ServiceList_Service.hasMany(Service, { foreignKey: 'ServiceListServiceFK', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
-Service.belongsTo(ServiceList_Service, { foreignKey: 'ServiceListServiceFK', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
+Service.hasMany(ServiceList_Service, { foreignKey: 'ServiceListServiceFK', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
+ServiceList_Service.belongsTo(Service, { foreignKey: 'ServiceListServiceFK', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
 
 ServiceList.hasMany(ServiceList_Service, { foreignKey: 'ServiceListFK', sourceKey: 'id', onDelete: 'cascade', onUpdate: 'restrict'})
 ServiceList_Service.belongsTo(ServiceList, { foreignKey: 'ServiceListFK', targetKey: 'id', onDelete: 'cascade', onUpdate: 'restrict' })
@@ -79,33 +79,62 @@ ServiceList.belongsTo(Wagon, { foreignKey: 'WagonFK', targetKey: 'id', onDelete:
 // UserInGroup.belongsTo(User, { foreignKey: 'id_us', targetKey: 'id' })
 async function init () {
   // await Worker.sync({force:true});
-  await Wagon.sync({force:true})
-  await Client.sync({force:true})
-  await StatusOfServiceList.sync({force:true})
-  await ServiceList.sync({force:true})
+  // await Wagon.sync({force:true})
+  // await Client.sync({force:true})
+  // await StatusOfServiceList.sync({force:true})
+  // await ServiceList.sync({force:true})
+  //
+  //
+  // await BreakdownType.sync({force:true})
+  // await Breakdown.sync({force:true})
+  //   await ServiceListBreakdown.sync({force:true})
+  //
+  // await ServiceList_Service.sync({force:true})
+  // await ServiceType.sync({force:true})
+  // await Service.sync({force:true})
+  //
+  // await NameStatus.sync({force:true})
+  // await NameType.sync({force:true})
+  // await NameOfGood.sync({force:true})
+  // await WorkOrderName.sync({force:true})
+  //
+  //
+  // await TaskStatus.sync({force:true})
+  // await Task.sync({force:true})
+  // await Position.sync({force:true})
+  // await Worker.sync({force:true})
+  // await TaskWorker.sync({force:true})
+  //
+  // await User.sync({force:true})
+
+  await Wagon.sync()
+  await Client.sync()
+  await StatusOfServiceList.sync()
+  await ServiceList.sync()
 
 
-  await BreakdownType.sync({force:true})
-  await Breakdown.sync({force:true})
-    await ServiceListBreakdown.sync({force:true})
-
-  await ServiceList_Service.sync({force:true})
-  await ServiceType.sync({force:true})
-  await Service.sync({force:true})
-
-  await NameStatus.sync({force:true})
-  await NameType.sync({force:true})
-  await NameOfGood.sync({force:true})
-  await WorkOrderName.sync({force:true})
+  await BreakdownType.sync()
+  await Breakdown.sync()
+  await ServiceListBreakdown.sync()
 
 
-  await TaskStatus.sync({force:true})
-  await Task.sync({force:true})
-  await Position.sync({force:true})
-  await Worker.sync({force:true})
-  await TaskWorker.sync({force:true})
+  await ServiceType.sync()
+  await Service.sync()
+  await ServiceList_Service.sync()
 
-  await User.sync({force:true})
+  await NameStatus.sync()
+  await NameType.sync()
+  await NameOfGood.sync()
+  await WorkOrderName.sync()
+
+
+  await TaskStatus.sync()
+  await Task.sync()
+  await Position.sync()
+  await Worker.sync()
+  await TaskWorker.sync()
+
+  await User.sync()
 }
 
 (async function f () {
