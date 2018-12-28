@@ -44,7 +44,7 @@ html(lang='en')
                             a.nav-link(href='/wagon')
                                 i.material-icons dashboard
                                 p Заказ-наряды
-                        li.nav-item.active
+                        li.nav-item
                             a.nav-link(href='/clients')
                                 i.material-icons person
                                 p Клиенты
@@ -52,7 +52,7 @@ html(lang='en')
                             a.nav-link(href='/sklad')
                                 i.material-icons content_paste
                                 p Склад
-                        li.nav-item
+                        li.nav-item.active
                             a.nav-link(href='/workers')
                                 i.material-icons bubble_chart
                                 p Работники
@@ -127,7 +127,7 @@ html(lang='en')
                                                         th
                                                             | День рождения
                                                         th
-                                                            | Телефон
+                                                            | Должность
                                                         th
                                                             | Задачи
                                                 tbody
@@ -137,10 +137,7 @@ html(lang='en')
                                                         clients[i].dataValues.SecondName,
                                                         clients[i].dataValues.Patronymic,
                                                         clients[i].dataValues.Birthday,
-                                                        clients[i].dataValues.PhoneNumber
-
-
-                                                        )
+                                                        clients[i].Position.dataValues.Name)
 
                                         .nav-tabs-wrapper
                                             ul.nav.nav-tabs(data-tabs='tabs')
