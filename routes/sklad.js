@@ -15,9 +15,15 @@ router.get('/', async function (req, res, next) {
     .catch((err) => {
       console.log(err)
     })
-  res.render('sklad', {
-    sklad:sklad
+  let types = await NameType.findAll( {
   })
-})
+    .catch((err) => {
+      console.log(err)
+    })
+  res.render('sklad', {
+    sklad: sklad,
+    types: types
+  })
+  })
 
 module.exports = router

@@ -65,14 +65,11 @@ app.use('/addsklad',async function (req, res) {
   let type = await  NameType.findOne({
     where:{Name: req.body.type}
   })
-  let status = await  NameStatus.findOne({
-    where:{Name: req.body.status}
-  })
   await NameOfGood.create({
       Name: req.body.name,
       Amount: parseInt(req.body.col),
       Type: type.dataValues.id,
-      Status: status.dataValues.id,
+      Status: 1,
       Price: parseInt(req.body.price)
     }
   )
@@ -96,7 +93,7 @@ app.use('/minsklad',async function (req, res) {
     where:{id: req.body.id}
   })
   await NameOfGood.update({
-      Amount: parseInt(req.body.col)-num.dataValues.Amount,
+      Amount: num.dataValues.Amount - parseInt(req.body.col),
 
     },{where:{id:req.body.id}}
   )

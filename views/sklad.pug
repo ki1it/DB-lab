@@ -116,8 +116,10 @@ html(lang='en')
                                                 div
                                                     input( name='name' type="text" placeholder='Название' required=true)
                                                     input( name='col' type="text" placeholder='Количество' required=true)
-                                                    input( name='type' type="text" placeholder='Тип' required=true)
-                                                    input( name= 'status' type="text" placeholder='Статус' required=true)
+                                                    select( name='type' required=true)
+                                                        option(value=''   hidden ) Выберите тип товара
+                                                        -for (let i = 0; i < types.length; i++)
+                                                            option(value=types[i].dataValues.Name) #{types[i].dataValues.Name}
                                                     input( name= 'price' type="text" placeholder='Цена' required=true)
                                                     button(type="submit"    href="/sklad")
                                                         span.ru Добавить новое
@@ -127,14 +129,14 @@ html(lang='en')
                                                     input( name='id' type="text" placeholder='id' required=true)
                                                     input( name='col' type="text" placeholder='Количество' required=true)
                                                     button(type="submit"    href="/sklad")
-                                                        span.ru Докинуть существующее
+                                                        span.ru Добавить существующую позицию
                                         div
                                             form( action="/minSklad" method="post"  enctype="application/json")
                                                 div
                                                     input( name='id' type="text" placeholder='id' required=true)
                                                     input( name='col' type="text" placeholder='Количество' required=true)
                                                     button(type="submit"    href="/sklad")
-                                                        span.ru Выдать
+                                                        span.ru Выдать товар
                                         .table-responsive
                                             table.table
                                                 thead.text-primary
