@@ -111,6 +111,16 @@ html(lang='en')
                                     .card-header.card-header-primary
                                         h4.card-title Клиенты
                                     .card-body
+                                        div
+                                            form( action="/addSklad" method="post"  enctype="application/json")
+                                                div
+                                                    input( name='name' type="text" placeholder='Название' required=true)
+                                                    input( name='2name' type="text" placeholder='Количество' required=true)
+                                                    input( name='3name' type="text" placeholder='Тип')
+                                                    input( name= 'birth' type="text" placeholder='Статус' required=true)
+                                                    input( name= 'tel' type="text" placeholder='Цена' required=true)
+                                                    button(type="submit"    href="/sklad")
+                                                        span.ru Добавить нового
                                         .table-responsive
                                             table.table
                                                 thead.text-primary
