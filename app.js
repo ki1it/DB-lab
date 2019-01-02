@@ -17,6 +17,7 @@ var skladRouter = require('./routes/sklad')
 var zapchastiRouter = require('./routes/zapchasti')
 var zadachiRouter = require('./routes/zadachi')
 var workersRouter = require('./routes/workers')
+var zadRouter = require('./routes/zadForWorker')
 var app = express();
 
 
@@ -55,7 +56,7 @@ app.use('/clients', clientsRouter)
 app.use('/sklad', skladRouter)
 app.use('/zadachi', zadachiRouter)
 app.use('/workers', workersRouter)
-
+app.use('/zadForWorker', zadRouter)
 
 const NameOfGood = require('./database/models/NameOfGood')
 const NameType = require('./database/models/NameType')

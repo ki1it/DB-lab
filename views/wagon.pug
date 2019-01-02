@@ -15,6 +15,32 @@ html(lang='en')
         link(href='assets/css/material-dashboard.css?v=2.1.0', rel='stylesheet')
         // CSS Just for demo purpose, don't include it in your project
         link(href='assets/demo/demo.css', rel='stylesheet')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+        #myModal.modal.fade(role='dialog')
+            .modal-dialog.modal-lg
+                .modal-content
+                    .modal-header
+                        h4.modal-title Добавление данных
+                        button.close(type='button', data-dismiss='modal') ×
+                    .modal-body
+                        form(action="/telegram", method="post" class="form" id='telegramForm' enctype="application/json")
+                            .form__container
+                                .form__inputs
+                                    input(type="text" name='name' placeholder="Имя" class="form__input" required)
+                                    br
+                                    input(type="email" name='email' placeholder="Email" class="form__input" required)
+                                    br
+                                    textarea(name="text" placeholder="Ваше сообщение" class="form__input form__message" required)
+                                    br
+                            .form__buttons
+                                input(type="submit" class="uk-button uk-button-primary top-margin" value="Отправить")
+
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Close
+
+
         - var i=0;
             mixin rowsTable(id, date, desc, status, wagon, client)
                 tr
@@ -115,6 +141,7 @@ html(lang='en')
                                     .card-header.card-header-primary
                                         h4.card-title Список Заказов
                                     .card-body
+                                        button.btn.btn-info.btn-lg(type='button', data-toggle='modal', data-target='#myModal') Добавить
                                         .table-responsive
                                             table.table
                                                 thead.text-primary
