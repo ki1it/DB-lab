@@ -28,14 +28,24 @@ html(lang='en')
                         form(action="/telegram", method="post" class="form" id='telegramForm' enctype="application/json")
                             .form__container
                                 .form__inputs
-                                    input(type="text" name='name' placeholder="Имя" class="form__input" required)
+                                    input(type="text" name='second_name' placeholder="Фамилия" class="form__input" required)
                                     br
-                                    input(type="email" name='email' placeholder="Email" class="form__input" required)
+                                    input(type="text" name='first_name' placeholder="Имя" class="form__input" required)
                                     br
-                                    textarea(name="text" placeholder="Ваше сообщение" class="form__input form__message" required)
+                                    input(type="text" name='patronymic' placeholder="Отчество" class="form__input" required)
                                     br
+                                    br
+                                    p Введите дату рождения
+                                    input(type='date' name='calendar' value="2012-06-01" required)
+                                    br
+                                    br
+                                    p Введите телефон без пробелов, скобок и тире
+                                    input(type="phone" name="phone" pattern="+7[0-9]{10}" placeholder="+7XXXXXXXXXX" required)
+                                    br
+                                    br
+
                             .form__buttons
-                                input(type="submit" class="uk-button uk-button-primary top-margin" value="Отправить")
+                                input.btn.btn-default(type="submit" class="uk-button uk-button-primary top-margin" value="Отправить")
 
                     .modal-footer
                         button.btn.btn-default(type='button', data-dismiss='modal') Close
@@ -70,7 +80,7 @@ html(lang='en')
                 .sidebar-wrapper
                     ul.nav
                         li.nav-item.active
-                            a.nav-link(href='/models')
+                            a.nav-link(href='/wagon')
                                 i.material-icons dashboard
                                 p Заказ-наряды
                         li.nav-item
