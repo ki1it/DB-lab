@@ -57,8 +57,9 @@ app.use((req, res, next) => {
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
   if (req.session.user && req.cookies.user_sid) {
-    res.redirect('/wagon');
-  } else {
+    res.redirect(req.originalUrl);
+  } else
+    {
     next();
   }
 };
@@ -93,7 +94,7 @@ app.get('/', sessionChecker, (req, res) => {
 })
 // route for user signup
 app.route('/signup')
-  .get(sessionChecker, (req, res) => {
+  .get( (req, res) => {
     res.render(__dirname + '/views/signup.pug');
   })
   .post((req, res) => {
@@ -101,7 +102,8 @@ app.route('/signup')
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
-      role: req.body.role
+      role: req.body.role,
+      worker_id: req.body.wid
     })
       .then(user => {
         req.session.user = user.dataValues;
@@ -129,7 +131,14 @@ app.route('/login')
         res.redirect('/login');
       } else {
         req.session.user = user.dataValues;
-        res.redirect('/wagon');
+        if(user.dataValues.role === 'admin')
+          {res.redirect('/signup')}
+        if(user.dataValues.role === 'storekeeper')
+          {res.redirect('/sklad')}
+        if(user.dataValues.role === 'administrator')
+          {res.redirect('/wagon')}
+        if(user.dataValues.role === 'worker')
+          {res.redirect('/sklad')}
       }
     });
   });

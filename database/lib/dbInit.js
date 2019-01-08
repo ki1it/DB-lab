@@ -74,6 +74,8 @@ Client.hasMany(ServiceList, { foreignKey: 'ClientFK', sourceKey: 'id', onDelete:
 ServiceList.belongsTo(Client, { foreignKey: 'ClientFK', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
 Wagon.hasMany(ServiceList, { foreignKey: 'WagonFK', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
 ServiceList.belongsTo(Wagon, { foreignKey: 'WagonFK', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
+
+User.belongsTo(Worker, { foreignKey: 'worker_id', targetKey: 'id'})
 // User.hasMany(UserInGroup, { foreignKey: 'id_us', sourceKey: 'id' })
 // UserInGroup.belongsTo(Group, { foreignKey: 'id_gr', targetKey: 'id' })
 // UserInGroup.belongsTo(User, { foreignKey: 'id_us', targetKey: 'id' })
@@ -105,6 +107,7 @@ async function init () {
   // await Worker.sync({force:true})
   // await TaskWorker.sync({force:true})
   //
+
    await User.sync({force:true})
 
   await Wagon.sync()

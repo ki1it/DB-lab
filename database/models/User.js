@@ -19,6 +19,10 @@ const User = sequelize.define('User', {
   role: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  worker_id:{
+    type: Sequelize.INTEGER,
+    unique: true
   }
 }, {
   hooks: {
