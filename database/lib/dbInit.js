@@ -105,7 +105,7 @@ async function init () {
   // await Worker.sync({force:true})
   // await TaskWorker.sync({force:true})
   //
-  // await User.sync({force:true})
+   await User.sync({force:true})
 
   await Wagon.sync()
   await Client.sync()
@@ -134,7 +134,7 @@ async function init () {
   await Worker.sync()
   await TaskWorker.sync()
 
-  await User.sync()
+   //await User.sync()
 }
 
 (async function f () {

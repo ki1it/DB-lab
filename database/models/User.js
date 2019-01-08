@@ -1,15 +1,35 @@
 const sequelize = require('../lib/pgbaseConnector');
 const Sequelize = require('sequelize');
+var bcrypt = require('bcrypt');
 const User = sequelize.define('User', {
-  Login: {
-    type: Sequelize.TEXT,
+  username: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false
   },
-  Pass:{
-    type: Sequelize.TEXT,
+  email: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false
   },
-  Role:{
-    type: Sequelize.TEXT,
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  role: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+}, {
+  hooks: {
+    beforeCreate: (user) => {
+      const salt = bcrypt.genSaltSync();
+      user.password = bcrypt.hashSync(user.password, salt);
+    }
   }
 });
+User.prototype.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+}
 
 module.exports = User;
