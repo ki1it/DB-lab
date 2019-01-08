@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var moment = require('moment');
 require('dotenv').config()
 require('./database/lib/dbInit')
 var indexRouter = require('./routes/index');
@@ -61,6 +62,7 @@ app.use('/zadForWorker', zadRouter)
 const NameOfGood = require('./database/models/NameOfGood')
 const NameType = require('./database/models/NameType')
 const NameStatus = require('./database/models/NameStatus')
+const Client = require('./database/models/Client')
 
 app.use('/addsklad',async function (req, res) {
   let type = await  NameType.findOne({
@@ -98,6 +100,17 @@ app.use('/minsklad',async function (req, res) {
 
     },{where:{id:req.body.id}}
   )
+  res.redirect(req.headers.referer)
+})
+
+app.use('/addClient', async function (req, res) {
+  await Client.create({
+    FirstName: req.body.firstName,
+    SecondName: req.body.secondName,
+    Patronymic: req.body.patronymic,
+    PhoneNumber: req.body.phone,
+    Birthday: moment(req.body.calendar, 'YYYY-MM-DD').startOf('day')
+  })
   res.redirect(req.headers.referer)
 })
 
