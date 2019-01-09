@@ -186,6 +186,7 @@ const NameType = require('./database/models/NameType')
 const NameStatus = require('./database/models/NameStatus')
 const Client = require('./database/models/Client')
 const Wagon = require('./database/models/Wagon')
+const ServiceList = require('./database/models/ServiceList')
 
 app.use('/addsklad',async function (req, res) {
   let type = await  NameType.findOne({
@@ -267,6 +268,15 @@ app.use('/deleteWagon', async function (req, res) {
   res.redirect(req.headers.referer)
 })
 
+app.use('/addServiceList', async function (req, res) {
+  await ServiceList.create({
+    Description: req.body.description,
+    Status: req.body.status,
+    ClientFK: req.body.client,
+    WagonFK: req.body.wagon
+  })
+  res.redirect(req.headers.referer)
+})
 app.use('/telegram', async function (req, res) {
 
 })

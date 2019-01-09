@@ -25,22 +25,28 @@ html(lang='en')
                         h4.modal-title Добавление данных
                         button.close(type='button', data-dismiss='modal') ×
                     .modal-body
-                        form(action="/telegram", method="post" class="form" id='telegramForm' enctype="application/json")
+                        form(action="/addServiceList", method="post" class="form" id='telegramForm' enctype="application/json")
                             .form__container
                                 .form__inputs
-                                    input(type="text" name='second_name' placeholder="Фамилия" class="form__input" required)
-                                    br
-                                    input(type="text" name='first_name' placeholder="Имя" class="form__input" required)
-                                    br
-                                    input(type="text" name='patronymic' placeholder="Отчество" class="form__input" required)
+                                    input(type="text" name='description' placeholder="Описание" class="form__input" required)
                                     br
                                     br
-                                    p Введите дату рождения
-                                    input(type='date' name='calendar' value="2012-06-01" required)
+                                    select( name='status' required=true)
+                                        option(value=''   hidden ) Статус заказ-наряда
+                                        -for (let i = 0; i < listOfStatus.length; i++)
+                                            option(value=listOfStatus[i].dataValues.id) #{listOfStatus[i].dataValues.Name}
                                     br
                                     br
-                                    p Введите телефон без пробелов, скобок и тире
-                                    input(type="phone" name="phone" pattern="+7[0-9]{10}" placeholder="+7XXXXXXXXXX" required)
+                                    select( name='wagon' required=true)
+                                        option(value=''   hidden ) Выберите вагон
+                                        -for (let i = 0; i < wagonList.length; i++)
+                                            option(value=wagonList[i].dataValues.id) #{wagonList[i].dataValues.Brand} #{wagonList[i].dataValues.Model} Вместимость: #{wagonList[i].dataValues.Capacity} #{wagonList[i].dataValues.Type} #{wagonList[i].dataValues.Weight}кг #{wagonList[i].dataValues.Year} г.в.
+                                    br
+                                    br
+                                    select( name='client' required=true)
+                                        option(value=''   hidden ) Выберите владельца
+                                        -for (let i = 0; i < clientList.length; i++)
+                                            option(value=clientList[i].dataValues.id) #{clientList[i].dataValues.SecondName} #{clientList[i].dataValues.FirstName} #{clientList[i].dataValues.Patronymic} #{clientList[i].dataValues.PhoneNumber}
                                     br
                                     br
 
@@ -61,10 +67,6 @@ html(lang='en')
                     td #{status}
                     td #[a(href="curwagon?id=" + wagon) #{wagon}]
                     td #[a(href="client?id=" + client) #{client}]
-                    td #[a(href="uslugi?id=" + id) Открыть]
-                    td #[a(href="polomki?id=" + id) Открыть]
-                    td #[a(href="zapchasti?id=" + id) Открыть]
-                    td #[a(href="zadachi?id=" + id) Открыть]
                     td
                         a#navbarDropdownMenuLink.nav-link(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
                             i.material-icons menu
@@ -178,23 +180,15 @@ html(lang='en')
                                                         th
                                                             | Вагон
                                                         th
-                                                            | Клиент
-                                                        th
-                                                            | Услуги
-                                                        th
-                                                            | Поломки
-                                                        th
-                                                            | Запчасти
-                                                        th
-                                                            | Задачи
+                                                            | Владелец
                                                 tbody
-                                                    -for (let i = 0; i < wagons.length; i++)
-                                                        +rowsTable(wagons[i].dataValues.id,
-                                                        wagons[i].dataValues.Date,
-                                                        wagons[i].dataValues.Description,
-                                                        wagons[i].StatusOfServiceList.dataValues.Name,
-                                                        wagons[i].Wagon.dataValues.id,
-                                                        wagons[i].Client.dataValues.id
+                                                    -for (let i = 0; i < serviceList.length; i++)
+                                                        +rowsTable(serviceList[i].dataValues.id,
+                                                        serviceList[i].dataValues.createdAt,
+                                                        serviceList[i].dataValues.Description,
+                                                        serviceList[i].StatusOfServiceList.dataValues.Name,
+                                                        serviceList[i].Wagon.dataValues.SecondName serviceList[i].Wagon.dataValues.FirstName,
+                                                        serviceList[i].Client.dataValues.id
                                                         )
                 footer.footer
                 form(action='https://www.coinpayments.net/index.php', method='post')
