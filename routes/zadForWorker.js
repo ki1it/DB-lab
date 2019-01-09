@@ -9,6 +9,7 @@ const Wagon = require('../database/models/Wagon')
 const Sequelize = require('sequelize')
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
+
   let tasks = await TaskWorker.findAll({
     where:{WorkerFK:req.query.id},
     include: [{ model: Task, include: [{ model: ServiceList, include: [{ model: Wagon,  as: 'Wagon' }],  as: 'ServiceList' }], as: 'Task' }]
@@ -17,6 +18,7 @@ router.get('/', async function (req, res, next) {
       console.log(err)
     })
   res.render('zadForWorker', {
+    role:req.session.user.role,
     tasks:tasks
   })
 })
