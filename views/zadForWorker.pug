@@ -38,22 +38,27 @@ html(lang='en')
                         | WinteX
                 .sidebar-wrapper
                     ul.nav
+                        if role !== 'worker'
+                            li.nav-item
+                                a.nav-link(href='/wagon')
+                                    i.material-icons dashboard
+                                    p Заказ-наряды
+                            li.nav-item
+                                a.nav-link(href='/clients')
+                                    i.material-icons person
+                                    p Клиенты
+                            li.nav-item
+                                a.nav-link(href='/sklad')
+                                    i.material-icons content_paste
+                                    p Склад
+                            li.nav-item.active
+                                a.nav-link(href='/workers')
+                                    i.material-icons bubble_chart
+                                    p Работники
                         li.nav-item
-                            a.nav-link(href='/wagon')
-                                i.material-icons dashboard
-                                p Заказ-наряды
-                        li.nav-item
-                            a.nav-link(href='/clients')
-                                i.material-icons person
-                                p Клиенты
-                        li.nav-item
-                            a.nav-link(href='/sklad')
-                                i.material-icons content_paste
-                                p Склад
-                        li.nav-item.active
-                            a.nav-link(href='/workers')
-                                i.material-icons bubble_chart
-                                p Работники
+                            a.nav-link(href='/logout')
+                                i.material-icons exit_to_app
+                                p Выйти
                         //li.nav-item
                         //    a.nav-link(href='/offers')
                         //        i.material-icons bubble_chart
