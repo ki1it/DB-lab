@@ -138,7 +138,8 @@ app.route('/login')
         if(user.dataValues.role === 'administrator')
           {res.redirect('/wagon')}
         if(user.dataValues.role === 'worker')
-          {res.redirect('/sklad')}
+          {
+            res.redirect('/zadForWorker?id=' + user.dataValues.worker_id)}
       }
     });
   });
