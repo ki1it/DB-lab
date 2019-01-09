@@ -138,6 +138,8 @@ html(lang='en')
                                                             | Должность
                                                         th
                                                             | Задачи
+                                                        th
+                                                            | Меню
                                                 tbody
                                                     -for (let i = 0; i < clients.length; i++)
                                                         +rowsTable(clients[i].dataValues.id,

@@ -21,6 +21,7 @@ router.get('/', async function (req, res, next) {
       console.log(err)
     })
   res.render('sklad', {
+    role:req.session.user.role,
     sklad: sklad,
     types: types
   })

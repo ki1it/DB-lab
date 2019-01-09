@@ -109,7 +109,7 @@ app.route('/signup')
     })
       .then(user => {
         req.session.user = user.dataValues;
-        res.redirect('/wagon');
+        res.redirect('/signup');
       })
       .catch(error => {
         res.redirect('/signup');
