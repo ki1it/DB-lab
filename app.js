@@ -9,6 +9,7 @@ require('./database/lib/dbInit')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var wagonRouter = require('./routes/wagon')
+var wagonListRouter = require('./routes/wagonList')
 var curwagonRouter = require('./routes/curwagon')
 var clientRouter = require('./routes/client')
 var usluguRouter = require('./routes/uslugi')
@@ -19,6 +20,7 @@ var zapchastiRouter = require('./routes/zapchasti')
 var zadachiRouter = require('./routes/zadachi')
 var workersRouter = require('./routes/workers')
 var zadRouter = require('./routes/zadForWorker')
+var workOrderListRouter = require('./routes/workOrderList')
 var app = express();
 
 
@@ -48,6 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/wagon', wagonRouter)
+app.use('/wagonList', wagonListRouter)
 app.use('/curwagon', curwagonRouter)
 app.use('/client', clientRouter)
 app.use('/uslugi', usluguRouter)
@@ -58,11 +61,13 @@ app.use('/sklad', skladRouter)
 app.use('/zadachi', zadachiRouter)
 app.use('/workers', workersRouter)
 app.use('/zadForWorker', zadRouter)
+app.use('/workOrderList', workOrderListRouter)
 
 const NameOfGood = require('./database/models/NameOfGood')
 const NameType = require('./database/models/NameType')
 const NameStatus = require('./database/models/NameStatus')
 const Client = require('./database/models/Client')
+const Wagon = require('./database/models/Wagon')
 
 app.use('/addsklad',async function (req, res) {
   let type = await  NameType.findOne({
@@ -110,6 +115,36 @@ app.use('/addClient', async function (req, res) {
     Patronymic: req.body.patronymic,
     PhoneNumber: req.body.phone,
     Birthday: moment(req.body.calendar, 'YYYY-MM-DD').startOf('day')
+  })
+  res.redirect(req.headers.referer)
+})
+
+app.use('/deleteClient', async function (req, res) {
+  await Client.destroy({
+    where: {
+      id: req.body.id
+    }
+  })
+  res.redirect(req.headers.referer)
+})
+
+app.use('/addWagon', async function (req, res) {
+  await Wagon.create({
+    Brand: req.body.brand,
+    Model: req.body.model,
+    Capacity: req.body.capacity,
+    Type: req.body.type,
+    Weight: req.body.weight,
+    Year: req.body.year
+  })
+  res.redirect(req.headers.referer)
+})
+
+app.use('/deleteWagon', async function (req, res) {
+  await Wagon.destroy({
+    where: {
+      id: req.body.id
+    }
   })
   res.redirect(req.headers.referer)
 })
