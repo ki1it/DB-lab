@@ -23,6 +23,7 @@ const Model = require('../models/Model')
 const Brand = require('../models/Brand')
 const EdIzmer = require('../models/EdIzmer')
 const TypeOfPayment = require('../models/TypeOfPayment')
+const UrClient = require('../models/UrClient')
 
 BreakdownType.hasMany(Breakdown, { foreignKey: 'Type', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
 Breakdown.belongsTo(BreakdownType, { foreignKey: 'Type', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
@@ -78,6 +79,9 @@ ServiceList.belongsTo(StatusOfServiceList, { foreignKey: 'Status', targetKey: 'i
 Client.hasMany(ServiceList, { foreignKey: 'ClientFK', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
 ServiceList.belongsTo(Client, { foreignKey: 'ClientFK', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
 
+UrClient.hasMany(ServiceList, { foreignKey: 'UrClientFK', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
+ServiceList.belongsTo(UrClient, { foreignKey: 'UrClientFK', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
+
 Car.hasMany(ServiceList, { foreignKey: 'CarFK', sourceKey: 'id', onDelete: 'restrict', onUpdate: 'restrict'})
 ServiceList.belongsTo(Car, { foreignKey: 'CarFK', targetKey: 'id', onDelete: 'restrict', onUpdate: 'restrict' })
 
@@ -102,74 +106,75 @@ User.belongsTo(Worker, { foreignKey: 'worker_id', targetKey: 'id'})
 // UserInGroup.belongsTo(User, { foreignKey: 'id_us', targetKey: 'id' })
 async function init () {
   // await Worker.sync({force:true});
-  await EdIzmer.sync({force:true})
-  await Model.sync({force:true})
-  await Brand.sync({force:true})
-  await SprCar.sync({force:true})
-  await Car.sync({force:true})
-  await Client.sync({force:true})
-  await StatusOfServiceList.sync({force:true})
-  await TypeOfPayment.sync({force:true})
-  await ServiceList.sync({force:true})
-
-
-  await BreakdownType.sync({force:true})
-  await Breakdown.sync({force:true})
-    await ServiceListBreakdown.sync({force:true})
-
-
-  await ServiceType.sync({force:true})
-  await Service.sync({force:true})
-  await ServiceList_Service.sync({force:true})
-
-  await NameStatus.sync({force:true})
-  await NameType.sync({force:true})
-  await NameOfGood.sync({force:true})
-  await WorkOrderName.sync({force:true})
-
-
-  await TaskStatus.sync({force:true})
-  await Task.sync({force:true})
-  await Position.sync({force:true})
-  await Worker.sync({force:true})
-  await TaskWorker.sync({force:true})
-
-   await User.sync({force:true})
-
-
-  // await EdIzmer.sync()
-  // await Model.sync()
-  // await Brand.sync()
-  // await SprCar.sync()
-  // await Car.sync()
-  // await Client.sync()
-  // await StatusOfServiceList.sync()
-  // await TypeOfPayment.sync()
-  // await ServiceList.sync()
+  // await EdIzmer.sync({force:true})
+  // await Model.sync({force:true})
+  // await Brand.sync({force:true})
+  // await SprCar.sync({force:true})
+  // await Car.sync({force:true})
+  // await Client.sync({force:true})
+  // await StatusOfServiceList.sync({force:true})
+  // await TypeOfPayment.sync({force:true})
+  // await ServiceList.sync({force:true})
   //
   //
-  // await BreakdownType.sync()
-  // await Breakdown.sync()
-  // await ServiceListBreakdown.sync()
+  // await BreakdownType.sync({force:true})
+  // await Breakdown.sync({force:true})
+  //   await ServiceListBreakdown.sync({force:true})
   //
+  //
+  // await ServiceType.sync({force:true})
+  // await Service.sync({force:true})
+  // await ServiceList_Service.sync({force:true})
+  //
+  // await NameStatus.sync({force:true})
+  // await NameType.sync({force:true})
+  // await NameOfGood.sync({force:true})
+  // await WorkOrderName.sync({force:true})
+  //
+  //
+  // await TaskStatus.sync({force:true})
+  // await Task.sync({force:true})
+  // await Position.sync({force:true})
+  // await Worker.sync({force:true})
+  // await TaskWorker.sync({force:true})
+  //
+  //  await User.sync({force:true})
 
-  // await ServiceType.sync()
-  // await Service.sync()
-  // await ServiceList_Service.sync()
-  //
-  // await NameStatus.sync()
-  // await NameType.sync()
-  // await NameOfGood.sync()
-  // await WorkOrderName.sync()
-  //
-  //
-  // await TaskStatus.sync()
-  // await Task.sync()
-  // await Position.sync()
-  // await Worker.sync()
-  // await TaskWorker.sync()
-  //
-  //  await User.sync()
+
+  await EdIzmer.sync()
+  await Model.sync()
+  await Brand.sync()
+  await SprCar.sync()
+  await Car.sync()
+  await UrClient.sync()
+  await Client.sync()
+  await StatusOfServiceList.sync()
+  await TypeOfPayment.sync()
+  await ServiceList.sync()
+
+
+  await BreakdownType.sync()
+  await Breakdown.sync()
+  await ServiceListBreakdown.sync()
+
+
+  await ServiceType.sync()
+  await Service.sync()
+  await ServiceList_Service.sync()
+
+  await NameStatus.sync()
+  await NameType.sync()
+  await NameOfGood.sync()
+  await WorkOrderName.sync()
+
+
+  await TaskStatus.sync()
+  await Task.sync()
+  await Position.sync()
+  await Worker.sync()
+  await TaskWorker.sync()
+
+   await User.sync()
 }
 
 (async function f () {

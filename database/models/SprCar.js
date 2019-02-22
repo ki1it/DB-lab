@@ -1,9 +1,6 @@
 const sequelize = require('../lib/pgbaseConnector');
 const Sequelize = require('sequelize');
 const  SprCar = sequelize.define('SprCar', {
-  CarInSprFK: {
-    type: Sequelize.INTEGER,
-  },
   StartYear: {
     type: Sequelize.INTEGER,
   },
