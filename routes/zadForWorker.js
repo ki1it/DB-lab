@@ -5,7 +5,7 @@ var router = express.Router()
 const TaskWorker = require('../database/models/TaskWorker')
 const Task = require('../database/models/Task')
 const ServiceList = require('../database/models/ServiceList')
-const Wagon = require('../database/models/Wagon')
+const Wagon = require('../database/models/Car')
 const Sequelize = require('sequelize')
 /* GET users listing. */
 router.get('/', async function (req, res, next) {

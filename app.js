@@ -185,7 +185,7 @@ const NameOfGood = require('./database/models/NameOfGood')
 const NameType = require('./database/models/NameType')
 const NameStatus = require('./database/models/NameStatus')
 const Client = require('./database/models/Client')
-const Wagon = require('./database/models/Wagon')
+const Wagon = require('./database/models/Car')
 const ServiceList = require('./database/models/ServiceList')
 
 app.use('/addsklad',async function (req, res) {

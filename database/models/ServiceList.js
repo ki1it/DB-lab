@@ -17,7 +17,13 @@ const ServiceList = sequelize.define('ServiceList', {
   ClientFK: {
     type: Sequelize.INTEGER,
   },
-  WagonFK: {
+  UrClientFK: {
+    type: Sequelize.INTEGER,
+  },
+  TypeOfPaymentFK: {
+    type: Sequelize.INTEGER,
+  },
+  CarFK: {
     type: Sequelize.INTEGER,
   },
 });

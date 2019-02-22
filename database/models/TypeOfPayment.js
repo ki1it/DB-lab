@@ -1,6 +1,6 @@
 const sequelize = require('../lib/pgbaseConnector');
 const Sequelize = require('sequelize');
-const NameStatus = sequelize.define('NameStatus', {
+const TypeOfPayment = sequelize.define('TypeOfPayment', {
   Name: {
     type: Sequelize.STRING(500)
   },
@@ -9,4 +9,4 @@ const NameStatus = sequelize.define('NameStatus', {
   },
 });
 
-module.exports = NameStatus;
+module.exports = TypeOfPayment;

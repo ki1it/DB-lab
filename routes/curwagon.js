@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-const Wagon = require('../database/models/Wagon')
+const Wagon = require('../database/models/Car')
 
 const Sequelize = require('sequelize')
 /* GET users listing. */
