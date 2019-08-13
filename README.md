@@ -1,2 +1,2 @@
-# VRZ_bd
+# Data base lab
 Lab work at university
